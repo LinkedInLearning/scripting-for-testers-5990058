@@ -1,0 +1,62 @@
+<span class="absolute text-white text-4xl top-5 left-4 cursor-pointer" onclick="openSidebar()" style="z-index: 1000;">
+    <i class="bi bi-filter-left px-2 bg-gray-900 rounded-md"></i>
+</span>
+<div class="sidebar fixed top-0 bottom-0 lg:left-0 p-2 w-[300px] overflow-y-visible text-center bg-gray-900" style="z-index: 1000;">
+    <div class="text-gray-100 text-xl">
+        <div class="p-2.5 mt-1 flex items-center">
+            <i class="bi bi-app-indicator px-2 py-1 rounded-md bg-blue-600"></i>
+            <h1 class="font-bold text-gray-200 text-[15px] ml-3">Gig Tracker</h1>
+            <i class="bi bi-arrow-left cursor-pointer ml-28" onclick="openSidebar()"></i>
+        </div>
+        <div class="my-2 bg-gray-600 h-[1px]"></div>
+    </div>
+    <div class="p-2.5 flex items-center rounded-md px-4 duration-300 cursor-pointer bg-gray-700 text-white">
+        <i class="bi bi-search text-sm"></i>
+        <input 
+            type="text"
+            name="search"
+            placeholder="Search"
+            class="text-[15px] ml-4 w-full bg-transparent focus:outline-none" 
+            hx-post="/search"
+            hx-trigger="keyup changed delay:500ms"
+            hx-target="#search-results"/>
+    </div>
+    <a href="/" class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
+        <i class="bi bi-house-door-fill"></i>
+        <span class="text-[15px] ml-4 text-gray-200 font-bold">Home</span>
+    </a>
+    <a href="/gigs"
+        class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white"
+        id="gig navigation">
+        <i class="bi bi-music-note-list"></i>
+        <span class="text-[15px] ml-4 text-gray-200 font-bold">Gigs</span>
+    </a>
+    <a href="/venues"
+        class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white"
+        id="venue navigation">
+        <i class="bi bi-building"></i>
+        <span class="text-[15px] ml-4 text-gray-200 font-bold">Venues</span>
+    </a>
+    <a href="/clients"
+        class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white"
+        id="client navigation">
+        <i class="bi bi-person"></i>
+        <span class="text-[15px] ml-4 text-gray-200 font-bold">Clients</span>
+    </a>
+
+    <div class="my-4 bg-gray-600 h-[1px]"></div>
+
+    <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
+        <i class="bi bi-box-arrow-in-right"></i>
+        <span class="text-[15px] ml-4 text-gray-200 font-bold">Logout</span>
+    </div>
+    <div hx-target="search-results" id="search-results" class="block w-full p-2.5 mt-3 items-left rounded-md px-4 duration-300 cursor-pointer text-white">
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    function openSidebar() {
+        document.querySelector(".sidebar").classList.toggle("hidden");
+    }
+</script>

@@ -1,0 +1,31 @@
+[tool.poetry]
+name = "gigtracker"
+version = "0.1.0"
+description = ""
+authors = ["Dave Westerveld <davewesterveld@gmail.com>"]
+readme = "README.md"
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.12"
+fastapi = {extras = ["standard"], version = "^0.115.5"}
+pytailwindcss = "^0.2.0"
+sqlmodel = "^0.0.22"
+jinja2-fragments = "^1.6.0"
+python-multipart = "^0.0.19"
+types-passlib = "^1.7.7.20241221"
+passlib = {extras = ["bcrypt"], version = "^1.7.4"}
+pydantic-extra-types = "^2.10.1"
+pyjwt = "^2.10.1"
+types-requests = "^2.32.0.20241016"
+slowapi = "^0.1.9"
+
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.7.4"
+mypy = "^1.13.0"
+pytest = "^8.3.3"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
