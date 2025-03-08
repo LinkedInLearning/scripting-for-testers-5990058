@@ -1,8 +1,10 @@
 {
-	"features": {
-		"ghcr.io/devcontainers-contrib/features/poetry:2": {
-			"version": "latest"
-		}
+"dockerComposeFile": "docker-compose.yml",
+ "service": "app",
+ "workspaceFolder": "/workspace",
+ "forwardPorts": [5432],
+	"portsAttributes": {
+		"5432": {"label": "PostgreSQL port", "onAutoForward": "silent"}
 	},
   "customizations": {
     "codespaces": {
