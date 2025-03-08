@@ -1,0 +1,140 @@
+{% extends "./base.html" %}
+
+
+{% block content %}
+<style>
+    .flex-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        padding: 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    .flex-1-1-33 {
+        flex: 1 1 calc(33.333% - 20px);
+        padding: 10px;
+    }
+</style>
+
+<div class="form-container hidden items-center justify-center min-h-screen relative" style="top: 10px;">
+    <form class="p-6 rounded shadow-md" style="background-color: cadetblue;">
+        <h2 class="text-2xl mb-4">Add a Venue</h2>
+        <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="venue-name">Name</label>
+            <input name="venue_name"
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="venue-name" type="text" placeholder="Enter the Venue name">
+        </div>
+        <div class="mb-4">  
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="venue-address">Adress</label>
+            <input name="venue_address"
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="venue-address" type="text">
+        </div>
+        <div class="mb-4">  
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="venue-contact_number">Contact Number</label>
+            <input name="venue_contact_number"
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="venue-contact_number" type="text">
+        </div>
+        <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="venue-contact_email">Contact Email Address</label>
+            <input name="venue_contact_email"
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="venue-contact_email" type="text">
+        </div>
+        <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="venue-capacity">Venue Capacity</label>
+            <input name="venue_capacity"
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="venue-capacity" type="number">
+        </div>
+        <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="venue-notes">Notes</label>
+            <input name="venue_notes"
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="venue-notes" type="text">
+        </div>
+        <div class="flex items-center justify-between">
+            <button
+                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                type="button" onclick="toggleForm();">
+                Cancel
+            </button>
+            <button
+                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                id="submit-button" type="button" 
+                hx-post="/venues"
+                hx-target="#form-response"
+                onclick="toggleForm();"
+            >
+                Submit
+            </button>
+
+        </div>
+    </form>
+</div>
+
+<div id="form-response">
+<div class="flex-container">
+    <div class="flex-1-1-33 justify-center"></div>
+    <div class="flex-1-1-33 justify-center">
+        <h1 class="text-2xl mb-4">Venues</h1>
+    </div>
+    <div class="flex-1-1-33 justify-center">
+        <button id="add-venue-button" type="button" class="bg-sky-500 hover:bg-sky-700 text-white py-2 px-4 rounded"
+            onclick="toggleForm()">
+            Add a Venue
+        </button>
+    </div>
+    <div class="flex-1-1-33 justify-center"></div>
+    <div class="flex-1-1-33 justify-center">
+        <table class="min-w-full bg-white">
+            <thead>
+                <tr>
+                    <th
+                        class="py-2 px-4 border-b border-gray-200 bg-gray-100 text-left text-sm leading-4 font-medium text-gray-600 uppercase tracking-wider">
+                        Name</th>
+                    <th
+                        class="py-2 px-4 border-b border-gray-200 bg-gray-100 text-left text-sm leading-4 font-medium text-gray-600 uppercase tracking-wider">
+                        Address</th>
+                    <th
+                        class="py-2 px-4 border-b border-gray-200 bg-gray-100 text-left text-sm leading-4 font-medium text-gray-600 uppercase tracking-wider">
+                        Email Address</th>
+                    <th
+                        class="py-2 px-4 border-b border-gray-200 bg-gray-100 text-left text-sm leading-4 font-medium text-gray-600 uppercase tracking-wider">
+                        Phone Number</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for venue in venues %}
+                <tr>
+                    <td class="py-2 px-4 border-b border-gray-200">{{ venue.name }}</td>
+                    <td class="py-2 px-4 border-b border-gray-200">{{ venue.address }}</td>
+                    <td class="py-2 px-4 border-b border-gray-200">{{ venue.contact_email }}</td>
+                    <td class="py-2 px-4 border-b border-gray-200">{{ venue.contact_number }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="flex-1-1-33 justify-center"></div>
+</div>
+</div>
+
+
+<script type="text/javascript">
+    function toggleForm() {
+        const element = event.target;
+        if (element.id === 'submit-button') {
+            document.querySelector('#add-venue-button').classList.remove("hidden");
+        }
+        document.querySelector('.sidebar').classList.add("hidden");
+
+        document.querySelector('.form-container').classList.toggle("hidden");
+        document.querySelector('.form-container').classList.toggle("flex");
+        document.querySelector('#add-venue-button').classList.toggle("hidden");
+    }
+</script>
+{% endblock %}

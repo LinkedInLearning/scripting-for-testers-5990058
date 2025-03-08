@@ -1,0 +1,102 @@
+{% extends "./base.html" %}
+
+
+{% block content %}
+<div class="add-gig flex items-center justify-center relative" style="top: 100px;">
+    <button 
+        id="add-gig-button"
+        type="button"
+        class="bg-sky-500 hover:bg-sky-700 text-white py-2 px-4 rounded"
+        onclick="toggleForm()"
+    >
+        Add a Gig
+    </button>
+</div> 
+
+<style>
+    .select-div {
+        margin: 4px;
+    }
+</style>
+<div class="form-container hidden items-center justify-center min-h-screen relative" style="top: 10px;">
+    <form class="p-6 rounded shadow-md" style="background-color: cadetblue;">
+        <h2 class="text-2xl mb-4">Add a Gig</h2>
+        <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="gig-name">Gig Name</label>
+            <input
+                name="gig_name"
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="gig-name" type="text" placeholder="Enter gig name">
+        </div>
+        <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="gig-date">Gig Date</label>
+            <input
+                name="gig_date"
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="gig-date" type="date">
+        </div>
+        <div class="flex items-center justify-between">
+            <div class="select-div">
+                <label id="venue-label" class="block text-gray-700 text-sm font-bold mb-2" for="gig-venue" >Venue</label>
+                <select
+                    name="gig_venue"
+                    id="gig-venue" 
+                    onchange="maybeAddNew(this.value);" >
+                </select>
+                <div hx-get="/load_venue_options"
+                    hx-trigger="load from:#gig-venue"
+                    hx-target="#gig-venue"></div>   
+            </div>
+            <div class="select-div">
+                <label id="client-label" class="block text-gray-700 text-sm font-bold mb-2" for="gig-client" >Client</label>
+                <select
+                    name="gig_client"
+                    id="gig-client"
+                    onchange="maybeAddNew(this.value);"
+                > </select>
+                <div hx-get="/load_client_options"
+                    hx-trigger="load from:#gig-client"
+                    hx-target="#gig-client"></div>
+            </div>
+        </div>
+        <div class="flex items-center justify-between">
+            <button
+                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                type="button" onclick="toggleForm()">
+                Cancel
+            </button>
+            <button
+                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                id="submit-button"
+                type="button"
+                hx-post="/gigs"
+                hx-target="#form-response"
+                onclick="toggleForm()">
+                Submit
+            </button>
+            
+        </div>
+    </form>
+</div>
+<div id="form-response"></div>
+
+<script type="text/javascript">
+    function toggleForm() {
+        const element = event.target;
+        if (element.id === 'submit-button') {
+            document.querySelector('.add-gig').classList.remove("hidden");
+        }
+        document.querySelector('.sidebar').classList.add("hidden");
+
+        document.querySelector('.form-container').classList.toggle("hidden");
+        document.querySelector('.form-container').classList.toggle("flex");
+        document.querySelector('.add-gig').classList.toggle("hidden");
+    }
+
+    function maybeAddNew(value){
+        if (value === '/venues' || value === '/clients'){ 
+            window.location = value;
+        }
+    }
+</script>
+{% endblock %}

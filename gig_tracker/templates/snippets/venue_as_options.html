@@ -1,0 +1,5 @@
+<option value="">Select...</option>
+<option value="/venues">Create a new venue</option> 
+{% for venue in venues %}
+<option value="{{ venue.id }}">{{ venue.name }}</option>
+{% endfor %}

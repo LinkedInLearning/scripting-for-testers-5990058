@@ -1,0 +1,5 @@
+<option value="">Select...</option>
+<option value="/clients">Create a new client</option>
+{% for client in clients %}
+<option value="{{ client.id }}">{{ client.first_name }} {{ client.last_name }}</option>
+{% endfor %}
