@@ -16,7 +16,7 @@ from .routes.gig_routes import gig_router
 from .routes.ui_routes import ui_router
 from .routes.user_routes import user_router
 from .routes.venue_routes import venue_router
-from .schema.base import create_db_and_tables, drop_db_and_tables, get_session
+from .schema.base import create_db_and_tables, drop_db_and_tables, get_session, seed_db
 from .schema.security import Token
 from .schema.user import User
 from .security import (
@@ -29,6 +29,7 @@ from .security import (
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     create_db_and_tables()
+    seed_db()
     yield
     drop_db_and_tables()
 

@@ -19,6 +19,8 @@ pydantic-extra-types = "^2.10.1"
 pyjwt = "^2.10.1"
 types-requests = "^2.32.0.20241016"
 slowapi = "^0.1.9"
+faker = "^37.0.0"
+requests = "^2.32.3"
 
 
 [tool.poetry.group.dev.dependencies]
