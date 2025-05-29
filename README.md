@@ -9,11 +9,25 @@ Scripting can expand your abilities as a tester and help you keep up with the pa
 
 Instructor Dave Westerveld provides concrete examples and ideas to increase your productivity, eliminate boring tasks, build new insights into products, and standardize and simplify your team's work.
 
+This course is integrated with GitHub Codespaces, an instant cloud developer environment that offers all the functionality of your favorite IDE without the need for any local machine setup. With GitHub Codespaces, you can get hands-on practice from any machine, at any time—all while using a tool that you’ll likely encounter in the workplace. The video "Setting up a Testing Application" in the introduction shows you how to set this up
 
 ## Instructions
 You will find the various scripts for this course in the `course_scripts` folder. There is a subfolder in there for each video that has scripts available. So for example to find the scripts for video 5 from chapter 1, you would go to the [01_05 folder](./course_scripts/01_05)
 
 It is reccommended that you try all exercises on your own before looking at the scripts. The scripts are provided as a way to check or debug your work, but you will have the greatest advances in your learning if you try to work through the examples on your own first!
+
+### Using Github Codespace
+In order to use the demo application for this course you will need to go through the following steps:
+
+1. Open the codespaces for this repo
+2. Once it has started and installed the dependencies, you can start the application with the following command
+```shell
+poetry run fastapi run app.py
+```
+3. On the popup, click on the "make public" button
+4. Go to the PORTS tab and you can see the url for the demo site
+
+You can find more details on this in the video "Setting up a Testing Application" in the course introduction.
 
 ### Instructor
 
