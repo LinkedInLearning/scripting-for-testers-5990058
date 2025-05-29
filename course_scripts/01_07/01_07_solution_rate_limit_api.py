@@ -1,7 +1,7 @@
 import requests
 
-base_url = "http://localhost:4001"
-
+# Update the base_url to the one from your codespaces site
+base_url = "https://ominous-space-sniffle-p56r6496vpfr7vp-8000.app.github.dev/"
 session = requests.Session()
 
 for _ in range(10):
