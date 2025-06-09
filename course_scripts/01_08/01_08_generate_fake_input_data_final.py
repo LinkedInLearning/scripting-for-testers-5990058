@@ -3,6 +3,7 @@ import requests
 
 fake = faker.Faker()
 
+# Update the base_url to the one from your codespace
 base_url = "http://localhost:4001"
 
 for _ in range(5):
